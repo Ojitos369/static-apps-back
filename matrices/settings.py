@@ -90,19 +90,6 @@ WSGI_APPLICATION = 'matrices.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': my_database['db'],
-        'USER': my_database['user'],
-        'PASSWORD': my_database['passwd'],
-        'HOST': my_database['host'],
-        'PORT': my_database['port'],
-    }
-}
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
