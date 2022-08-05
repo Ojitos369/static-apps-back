@@ -50,7 +50,7 @@ def generate_names(request):
         
         response['names'] = names
     except Exception as e:
-        error = show_error(e, send_email = False)
+        error = show_error(e, send_email = True)
         print(error)
         response['message'] = error
         status = 400
