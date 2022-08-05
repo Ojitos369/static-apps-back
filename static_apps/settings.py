@@ -130,6 +130,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+
 EMAIL_HOST = os.environ.get('STATIC_APPS_EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('STATIC_APPS_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('STATIC_APPS_EMAIL_HOST_PASSWORD')
@@ -139,3 +141,4 @@ EMAIL_PORT = int(os.environ.get('STATIC_APPS_EMAIL_PORT'))
 EMAIL_DATA = {
     'admin_email': os.environ.get('STATIC_APPS_ADMIN_EMAIL')
 }
+
