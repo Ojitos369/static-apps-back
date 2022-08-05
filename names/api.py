@@ -26,8 +26,8 @@ def generate_names(request):
     response = {}
     
     try:
-        vocals = ['aeiou']
-        consonants = ['bcdfghjklmnpqrstvwxyz']
+        vocals = ['a', 'e', 'i', 'o', 'u']
+        consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
         
         data = json.loads(request.body.decode('utf-8'))
         range_min = int(data['range_min'])
@@ -39,7 +39,7 @@ def generate_names(request):
         for _ in range(quantity):
             name = ''
             length = random.randint(range_min, range_max)
-            for __ in range(length):
+            for x in range(length):
                 n = random.randint(1, 100)
                 if n <= merge:
                     name += random.choice(vocals)
@@ -50,7 +50,7 @@ def generate_names(request):
         
         response['names'] = names
     except Exception as e:
-        error = show_error(e, send_email = True)
+        error = show_error(e, send_email = False)
         print(error)
         response['message'] = error
         status = 400
