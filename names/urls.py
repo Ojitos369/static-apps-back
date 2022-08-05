@@ -4,7 +4,10 @@ from drf_yasg import openapi
 
 from django.urls import path, re_path
 
+from .api import (generate_names)
+
 from .api import test
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -26,6 +29,8 @@ urlpatterns = [
     # -------------------   DOCS URLS   -------------------
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    
+    path('api/generate_names/', generate_names, name='generate_names'),
     
     path('api/test/', test, name='test'),
 ]
