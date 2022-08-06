@@ -35,16 +35,26 @@ def generate_names(request):
         quantity = int(data['quantity'])
         merge = int(data['merge'])
         
+        vocals_seg = 0
+        const_seg = 0
         names = []
         for _ in range(quantity):
             name = ''
             length = random.randint(range_min, range_max)
             for x in range(length):
                 n = random.randint(1, 100)
+                if n <= merge and vocals_seg > 1:
+                    n += 100
+                if n <= merge and const_seg > 1:
+                    n -= 100
                 if n <= merge:
                     name += random.choice(vocals)
+                    vocals_seg += 1
+                    const_seg = 0
                 else:
                     name += random.choice(consonants)
+                    const_seg += 1
+                    vocals_seg = 0
             
             names.append(name.title())
         
