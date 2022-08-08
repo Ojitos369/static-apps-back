@@ -30,7 +30,7 @@ urlpatterns = [
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     
-    path('api/generate_names/', generate_names, name='generate_names'),
+    path('generate_names/', generate_names, name='generate_names'),
     
-    path('api/test/', test, name='test'),
+    path('test/', test, name='test'),
 ]
