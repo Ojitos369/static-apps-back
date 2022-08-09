@@ -1,3 +1,9 @@
+def print_line_center(error):
+    print()
+    print(error)
+    print()
+
+
 def show_error(e, send_email = False):
     import os
     import datetime

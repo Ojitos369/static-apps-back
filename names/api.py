@@ -13,7 +13,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 # User
-from static_apps.core.tools.functions import show_error
+from static_apps.core.tools.functions import show_error, print_line_center
 
 @api_view(['GET'])
 def test(request):
@@ -76,7 +76,7 @@ def generate_names(request):
         response['names'] = names
     except Exception as e:
         error = show_error(e, send_email = True)
-        print(error)
+        print_line_center(error)
         response['message'] = str(e)
         status = 400
     return Response(response, status=status)
