@@ -20,7 +20,7 @@ def test(request):
     return Response({'message': 'Hello, world!'})
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 def generate_names(request):
     status = 200
     response = {}
@@ -30,10 +30,15 @@ def generate_names(request):
         consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
         
         data = json.loads(request.body.decode('utf-8'))
-        range_min = int(data['range_min'])
-        range_max = int(data['range_max'])
-        quantity = int(data['quantity'])
-        merge = int(data['merge'])
+        try:
+            range_min = int(data['range_min'])
+            range_max = int(data['range_max'])
+            quantity = int(data['quantity'])
+            merge = int(data['merge'])
+        except Exception as e:
+            status = 400
+            response = {'message': 'Invalid data. All parameters need to be integers.'}
+            return Response(response, status=status)
         
         vocals_seg = 0
         const_seg = 0
