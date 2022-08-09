@@ -45,7 +45,7 @@ def generate_names(request):
                 n = random.randint(1, 100)
                 if n <= merge and vocals_seg > 1:
                     n += 100
-                if n <= merge and const_seg > 1:
+                if n >= merge and const_seg > 1:
                     n -= 100
                 if n <= merge:
                     name += random.choice(vocals)
