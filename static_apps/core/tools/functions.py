@@ -2,8 +2,9 @@ def show_error(e, send_email = False):
     import os
     import datetime
     exc_type, exc_obj, exc_tb = os.sys.exc_info()
-    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    rute = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)
+    rute, file_name = fname[0], fname[1]
+    fname = file_name
     file = rute + '/' + fname
     now = datetime.datetime.now()
     now = now.strftime("%d/%m/%Y %H:%M:%S")
