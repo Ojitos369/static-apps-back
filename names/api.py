@@ -40,12 +40,22 @@ def generate_names(request):
             response = {'message': 'Invalid data. All parameters need to be integers.'}
             return Response(response, status=status)
         
+        if range_min < 1 or range_max < 1 or quantity < 1 or merge < 1:
+            status = 400
+            response = {'message': 'Invalid data. All parameters need to be greater than 0.'}
+            return Response(response, status=status)
+        
         vocals_seg = 0
         const_seg = 0
         names = []
         for _ in range(quantity):
             name = ''
-            length = random.randint(range_min, range_max)
+            try:
+                length = random.randint(range_min, range_max)
+            except Exception as e:
+                status = 400
+                response = {'message': 'Max length must be greater than min length.'}
+                return Response(response, status=status)
             for x in range(length):
                 n = random.randint(1, 100)
                 if n <= merge and vocals_seg > 1:
@@ -67,6 +77,6 @@ def generate_names(request):
     except Exception as e:
         error = show_error(e, send_email = True)
         print(error)
-        response['message'] = error
+        response['message'] = str(e)
         status = 400
     return Response(response, status=status)
