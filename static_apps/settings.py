@@ -141,6 +141,5 @@ DEFAULT_FROM_EMAIL = os.environ.get('STATIC_APPS_DEFAULT_FROM_EMAIL')
 EMAIL_PORT = int(os.environ.get('STATIC_APPS_EMAIL_PORT'))
 
 EMAIL_DATA = {
-    'admin_email': os.environ.get('STATIC_APPS_ADMIN_EMAIL')
+    'admin_email': os.environ.get('STATIC_APPS_ADMIN_EMAIL', 'ojtios369@gmail.com'),
 }
-
