@@ -246,3 +246,4 @@ cython_debug/
 bin/
 
 .vscode
+Dockerfile-local

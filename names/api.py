@@ -74,6 +74,7 @@ def generate_names(request):
             names.append(name.title())
         
         response['names'] = names
+        # response['message'] = ':D'
     except Exception as e:
         error = show_error(e, send_email = True)
         print_line_center(error)
