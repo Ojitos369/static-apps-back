@@ -10,7 +10,7 @@ RUN apk add gcc musl-dev python3-dev
 RUN pip install -r requirements.txt
 
 # set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
+# ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # # env app
@@ -25,6 +25,6 @@ ENV PYTHONUNBUFFERED 1
 # copy project
 COPY . /usr/src/
 
-EXPOSE 8000
+# EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
