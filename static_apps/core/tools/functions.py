@@ -18,7 +18,7 @@ def currency_convertions(amount, currency_from, currency_to):
     # div class YMlKec fxKbKc
     results = soup.select('.YMlKec.fxKbKc')
     results = results[0]
-    results = results.contents[0]
+    results = results.contents[0].replace(',', '').replace(' ', '')
     results = float(results)
     results = results * float(amount)
     results = round(results, 2)
