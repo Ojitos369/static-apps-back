@@ -1,24 +1,35 @@
+# Python
+import requests
+
+from bs4 import BeautifulSoup
+
+
 def print_line_center(error):
     print()
     print(error)
     print()
 
 
-def show_error(e, send_email = False):
-    import os
-    import datetime
-    info_exc = os.sys.exc_info()
-    exc_type, exc_obj, exc_tb = info_exc
-    file = exc_tb.tb_frame.f_code.co_filename
-    function_data = str(exc_tb.tb_frame).split()
-    function_data = function_data[-1][:-1]
-    now = datetime.datetime.now()
-    now = now.strftime("%d/%m/%Y %H:%M:%S")
+def currency_convertions(amount, currency_from, currency_to):
+    c_changes = {
+        'NMP': 'MXN',
+    }
+    for key in c_changes:
+        currency_from = currency_from.replace(key, c_changes[key])
+        currency_to = currency_to.replace(key, c_changes[key])
     
-    error = f'ERROR INFO\nTipo: {exc_type}\nArchivo: {file}\nFuncion: {function_data}\nLinea: {exc_tb.tb_lineno}\nError: {e}\nFecha: {now}'
-    
-    if send_email:
-        from static_apps.core.emails.emails import EmailError
-        email = EmailError(error)
-        email.send()
-    return error
+    if currency_from == currency_to:
+        return amount
+    url = f'https://www.google.com/finance/quote/{currency_from.upper()}-{currency_to.upper()}'
+    page = requests.get(url)
+    # print(url)
+    soup = BeautifulSoup(page.content, 'lxml')
+    # div class YMlKec fxKbKc
+    results = soup.select('.YMlKec.fxKbKc')
+    results = results[0]
+    results = results.contents[0].replace(',', '').replace(' ', '')
+    results = float(results)
+    results = results * float(amount)
+    results = round(results, 2)
+    # print(results)
+    return results

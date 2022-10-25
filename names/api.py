@@ -13,7 +13,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 # User
-from static_apps.core.tools.functions import show_error, print_line_center
+from static_apps.core.tools.errors import show_error
+from static_apps.core.tools.functions import print_line_center
 
 @api_view(['GET'])
 def test(request):
